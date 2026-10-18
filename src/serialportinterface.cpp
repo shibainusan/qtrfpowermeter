@@ -5,7 +5,8 @@ SerialPortInterface::SerialPortInterface(QObject *parent) : QObject{parent}
 {
 
 
-    m_serialPort = new QSerialPort();
+    // Parent to this so the port follows the device in moveToThread().
+    m_serialPort = new QSerialPort(this);
     connect(m_serialPort, &QSerialPort::readyRead, this,
             &SerialPortInterface::readData);
     connect(m_serialPort, &QSerialPort::errorOccurred, this,

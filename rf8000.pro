@@ -8,8 +8,8 @@ TRANSLATIONS = ./translations/$${TARGET}_en_US.ts ./translations/$${TARGET}_uk_U
 TEMPLATE = app
 
 CONFIG += c++17
-# do not show qDebug() messages in release builds
-CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+# qDebug() output is kept in release builds; add CONFIG+=no_debug_log to silence it.
+CONFIG(release, debug|release):CONFIG(no_debug_log):DEFINES += QT_NO_DEBUG_OUTPUT
 CONFIG += lrelease
 
 # You can make your code fail to compile if it uses deprecated APIs.
